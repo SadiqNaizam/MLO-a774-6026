@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
 	darkMode: ["class"],
@@ -19,6 +20,7 @@ export default {
 		},
 		extend: {
 			colors: {
+        /* Shadcn UI semantic colors */
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -32,10 +34,7 @@ export default {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
-				},
+        /* Destructive removed as per PRD focus */
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
@@ -52,22 +51,23 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+        /* PRD specific color names for direct use if needed (e.g., text-primaryText) */
+        appBackground: 'hsl(var(--prd-background))', // from PRD background
+        surface: 'hsl(var(--prd-surface))', // from PRD surface
+        primaryText: 'hsl(var(--prd-primary-text))', // from PRD primaryText
+        secondaryText: 'hsl(var(--prd-secondary-text))', // from PRD secondaryText
+        accentButton: 'hsl(var(--prd-accent-button))', // from PRD accentButton
+        prdBorder: 'hsl(var(--prd-border))' // from PRD border
+        /* Sidebar colors removed */
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
+				lg: 'var(--radius)', // 0.5rem, matches PRD 'rounded-lg'
+				md: 'calc(var(--radius) - 2px)', // 0.5rem - 2px, matches PRD 'rounded-md'
 				sm: 'calc(var(--radius) - 4px)'
 			},
+      fontFamily: {
+        sans: ["sans-serif", ...fontFamily.sans], // Ensures PRD primaryFont: "sans-serif" is respected
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
